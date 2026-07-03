@@ -1,13 +1,17 @@
 class Solution {
     boolean isPalindrome(String s) {
-        // code here
-        int i=0,j=s.length()-1;
-        while (i<=j){
-            if (s.charAt(i)!=s.charAt(j))
-                return false;
-            i++;
-            j--;
+        int n = s.length() - 1;
+        return fun(s, 0, n);
+    }
+
+    boolean fun(String s, int low, int high) {
+        int len = high - low + 1;
+        if (len <= 1) {
+            return true;
         }
-        return true;
+        if (s.charAt(low) != s.charAt(high)) {
+            return false;
+        }
+        return fun(s, low + 1, high - 1);
     }
 }
