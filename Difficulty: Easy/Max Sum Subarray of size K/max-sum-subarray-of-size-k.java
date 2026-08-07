@@ -1,25 +1,16 @@
 class Solution {
-    public int maxSubarraySum(int[] arr, int k) {
-        int low = 0;
-        int high = k;
-        int sum = 0;
-        int res = 0;
-        int n = arr.length;
-
-        for (int i = 0; i < k; i++) {
-            sum = sum + arr[i];
+    public int maxSubarraySum(int[] nums, int k) {
+        // Code here
+        int wsum=0;
+        for(int i=0;i<k;i++){
+            wsum=wsum+nums[i];
         }
-
-        res = sum;
-
-        while (high < n) {
-            sum = sum - arr[low]; 
-            sum = sum + arr[high];    
-            res = Math.max(res, sum);
-            low++;
-            high++;
+        int res=wsum;
+        for(int j=k;j<nums.length;j++){
+            wsum=wsum+nums[j];
+            wsum=wsum-nums[j-k];
+            res=Math.max(wsum,res);
         }
-
         return res;
     }
 }
